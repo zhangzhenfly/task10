@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数"/>
+	<input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+	<p id="R"></p>
+<script>
+document.getElementById("trans-btn").onclick = function dec2bin(decNumber) 
+{
+   var num=document.getElementById("dec-number").value;
+   var bin=document.getElementById("bin-bit").value;
+   var temp="";
+   var temp1="";
+   var arr=new Array();
+   var P=document.getElementById("R");
+   try {if (num<0) throw "输入必须为一个非负整数" ;
+        if (num=="") throw "输入不能为空" ;
+		if(num==0) throw "0" ;
+	   }
+        catch(err)
+		   {
+		   console.log(P.innerHTML=err);
+ 		   }
+    if(num>0)
+  {	   
+       for (var i = 0; 1; i++) 
+            {
+                if (num / 2 >= 1) 
+				{
+                    arr[i] = num % 2;
+                    num = parseInt(num / 2);
+                } 
+				else 
+				{
+                    arr[i] = 1;
+                    break;    //跳出这个for循环
+                }
+			} 
+       if(bin>=arr.length)
+      { 
+	    
+       for (var i = arr.length; i > 0; i--)
+			{
+              temp=temp+arr[i-1];
+            }
+	   for(var b=arr.length;b<bin;b++)
+		{
+		 arr[b]=0;
+		 temp1=temp1+arr[b];
+		}
+	   console.log(document.getElementById("R").innerHTML=temp1+temp);
+      }
+	  else
+      { 
+       for (var i = arr.length; i > 0; i--)
+			{
+              temp=temp+arr[i-1];
+            }
+	   console.log(document.getElementById("R").innerHTML=temp+"<br>"+"输入的二进制数字位数小于实际的二进制本身位数");
+      }
+    } 
+}
+       
+
+   // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+
+
+// 实现当点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+// Some coding
+
+</script>
+</body>
+</html>
